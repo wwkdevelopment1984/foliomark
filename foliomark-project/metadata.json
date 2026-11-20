@@ -1,0 +1,6 @@
+{
+  "name": "FolioMark",
+  "description": "Manifest V3 browser extension and interactive annotation studio for free-form keyboard text placement, pointer-events pen drawing, text highlighting, and PDF export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FolioMark Sidebar Dashboard</title>
+    <link rel="stylesheet" href="sidebar.css" />
+  </head>
+  <body>
+    <header class="sb-header">
+      <div class="sb-header-top">
+        <span class="sb-brand">FolioMark</span>
+        <button id="sb-export-pdf" class="sb-btn-primary">Export PDF</button>
+      </div>
+      <div id="sb-page-meta" class="sb-meta">Loading active tab...</div>
+    </header>
+
+    <section class="sb-controls">
+      <div class="sb-scope-tabs" role="tablist">
+        <button id="scope-current" class="sb-tab active" data-scope="current">Current Page</button>
+        <button id="scope-all" class="sb-tab" data-scope="all">All Saved URLs</button>
+      </div>
+
+      <input
+        id="sb-search"
+        type="search"
+        class="sb-search"
+        placeholder="Search text boxes, quotes, notes..."
+      />
+
+      <div class="sb-filters">
+        <button class="sb-filter active" data-filter="all">All</button>
+        <button class="sb-filter" data-filter="textbox">Text</button>
+        <button class="sb-filter" data-filter="highlight">Highlights</button>
+        <button class="sb-filter" data-filter="ink">Ink</button>
+      </div>
+    </section>
+
+    <section class="sb-quick-tools">
+      <button class="sb-tool-btn" data-set-tool="text">+ Add Text Box</button>
+      <button class="sb-tool-btn" data-set-tool="pen">Pen Mode</button>
+      <button class="sb-tool-btn" data-set-tool="select">Highlight Mode</button>
+      <button class="sb-tool-btn" id="sb-toggle-toolbar">Show / Hide Bar</button>
+    </section>
+
+    <section class="sb-quick-tools sb-capture-row">
+      <button class="sb-tool-btn" id="sb-capture-full">Capture Screen</button>
+      <button class="sb-tool-btn" id="sb-capture-area">Capture Area</button>
+    </section>
+
+    <main id="sb-list" class="sb-list"></main>
+
+    <footer class="sb-footer">
+      <span id="sb-counts" class="sb-counts">0 annotations</span>
+      <button id="sb-print-summary" class="sb-link-btn">Print Report View</button>
+    </footer>
+
+    <!-- Printable Composite Area for Standalone Sidebar Report Printing -->
+    <section id="sb-print-composite" class="sb-print-only"></section>
+
+    <script src="sidebar.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,255 @@
+/* FolioMark Content Overlay Styles (Scoped + Print-Ready) */
+
+.fm-highlight {
+  border-radius: 2px;
+  padding: 0 1px;
+  cursor: pointer;
+  transition: filter 150ms ease;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  mix-blend-mode: multiply;
+}
+
+.fm-highlight:hover {
+  filter: brightness(0.95);
+}
+
+.fm-highlight[data-fm-color="yellow"] {
+  background-color: rgba(254, 240, 138, 0.38);
+  border-bottom: 1.5px solid #eab308;
+}
+
+.fm-highlight[data-fm-color="amber"] {
+  background-color: rgba(253, 211, 77, 0.34);
+  border-bottom: 1.5px solid #d97706;
+}
+
+.fm-highlight[data-fm-color="mint"] {
+  background-color: rgba(134, 239, 172, 0.34);
+  border-bottom: 1.5px solid #16a34a;
+}
+
+.fm-highlight[data-fm-color="teal"] {
+  background-color: rgba(94, 234, 212, 0.34);
+  border-bottom: 1.5px solid #0d9488;
+}
+
+.fm-highlight[data-fm-color="sky"] {
+  background-color: rgba(125, 211, 252, 0.34);
+  border-bottom: 1.5px solid #0284c7;
+}
+
+.fm-highlight[data-fm-color="lavender"] {
+  background-color: rgba(196, 181, 253, 0.34);
+  border-bottom: 1.5px solid #7c3aed;
+}
+
+.fm-highlight[data-fm-color="rose"] {
+  background-color: rgba(253, 164, 175, 0.34);
+  border-bottom: 1.5px solid #e11d48;
+}
+
+.fm-highlight[data-fm-color="peach"] {
+  background-color: rgba(253, 186, 116, 0.34);
+  border-bottom: 1.5px solid #ea580c;
+}
+
+.fm-highlight.fm-flash {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+/* Annotation layer container */
+#foliomark-canvas-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 2147483640;
+}
+
+#foliomark-marker-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+#foliomark-ink-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+#foliomark-ink-canvas.fm-inking-active {
+  pointer-events: auto;
+  touch-action: none;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 4v24M4 16h24' stroke='%23ffffff' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M16 4v24M4 16h24' stroke='%230f172a' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%231d4ed8'/%3E%3C/svg%3E") 16 16, crosshair;
+}
+
+/* Free-form keyboard text boxes */
+.fm-textbox {
+  position: absolute;
+  min-width: 140px;
+  max-width: 480px;
+  pointer-events: auto;
+  background: transparent;
+  border-radius: 6px;
+  border: 1px dashed transparent;
+  padding: 2px;
+  box-sizing: border-box;
+  cursor: move;
+  z-index: 2147483642;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-shadow: none;
+  white-space: normal;
+  transition: box-shadow 150ms ease, border-color 150ms ease;
+}
+
+.fm-textbox:hover {
+  border-color: rgba(29, 78, 216, 0.5);
+}
+
+.fm-textbox.fm-textbox-focused {
+  border-style: solid;
+  border-color: #1d4ed8;
+}
+
+.fm-textbox-handle {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 3px 6px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+  cursor: grab;
+  user-select: none;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+  font-size: 11px;
+  color: #475569;
+}
+
+.fm-textbox:hover .fm-textbox-handle,
+.fm-textbox.fm-textbox-focused .fm-textbox-handle {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fm-textbox-handle:active {
+  cursor: grabbing;
+}
+
+.fm-textbox-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fm-textbox-btn {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.fm-textbox-btn:hover {
+  background: #f1f5f9;
+}
+
+.fm-textbox-editor {
+  padding: 6px 8px;
+  outline: none;
+  min-height: 28px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  cursor: text;
+}
+
+.fm-textbox-editor:empty::before {
+  content: 'Type annotation...';
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+/* Print / Export to PDF Rules */
+@media print {
+  #foliomark-shadow-host {
+    display: none !important;
+  }
+
+  #foliomark-canvas-layer {
+    width: 100% !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .fm-textbox {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .fm-textbox.fm-textbox-empty {
+    display: none !important;
+  }
+
+  .fm-textbox-handle {
+    display: none !important;
+  }
+
+  .fm-textbox-editor:empty::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  .fm-highlight,
+  .fm-print-ink-svg,
+  #foliomark-marker-canvas,
+  #foliomark-ink-canvas {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #foliomark-canvas-layer.fm-print-svg-active #foliomark-marker-canvas,
+  #foliomark-canvas-layer.fm-print-svg-active #foliomark-ink-canvas {
+    display: none !important;
+  }
+}
+
+/* Clean appearance while capturing screenshot */
+html.fm-capturing .fm-textbox {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html.fm-capturing .fm-textbox.fm-textbox-empty,
+html.fm-capturing .fm-textbox-handle {
+  display: none !important;
+}
+

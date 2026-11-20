@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Source Serif 4', Georgia, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #0f172a;
+    background-color: #f4f5f7;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-editorial {
+    font-family: var(--font-serif);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* PDF.js text layer styling for accurate text selection & highlighting */
+.pdf-text-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  line-height: 1;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  user-select: text;
+}
+
+.pdf-text-layer span,
+.pdf-text-layer br {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+
+.pdf-text-layer ::selection {
+  background: rgba(29, 78, 216, 0.22);
+}
+
+/* Print / Export to PDF stylesheet */
+@media print {
+  @page {
+    size: auto;
+    margin: 5mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only-container {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .print-page-sheet {
+    box-shadow: none !important;
+    border-color: transparent !important;
+    margin: 0 auto !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .annotation-textbox-chrome {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .annotation-textbox-handle {
+    display: none !important;
+  }
+
+  .pdf-print-sheet {
+    width: min(100%, var(--pdf-print-width, 100%)) !important;
+    height: auto !important;
+    aspect-ratio: var(--pdf-aspect-ratio);
+    position: relative !important;
+    overflow: visible !important;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .pdf-print-sheet:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .pdf-print-bitmap {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  [data-print-annotation-svg],
+  [data-print-annotation-svg] * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

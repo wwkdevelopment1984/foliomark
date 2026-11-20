@@ -1,0 +1,72 @@
+{
+  "manifest_version": 3,
+  "name": "FolioMark — Web & PDF Annotator",
+  "version": "1.1.7",
+  "description": "Annotate any web page or PDF with free-form keyboard text boxes, pointer-events pen drawing, text highlights, sticky notes, screen capture, and clean PDF export.",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "storage",
+    "scripting",
+    "sidePanel",
+    "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "Toggle FolioMark Annotator",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidebar/sidebar.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "styles/content.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "toggle-toolbar": {
+      "suggested_key": {
+        "default": "Alt+Shift+A"
+      },
+      "description": "Toggle FolioMark floating annotation toolbar"
+    },
+    "tool-text": {
+      "suggested_key": {
+        "default": "Alt+Shift+T"
+      },
+      "description": "Activate free-form keyboard Text Tool"
+    },
+    "tool-pen": {
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      },
+      "description": "Activate Pointer Events Pen Tool"
+    }
+  }
+}
